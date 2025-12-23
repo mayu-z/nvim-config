@@ -35,4 +35,4 @@ return {
     end
   }
 }
-require("mason-lspconfig.features.automatic_enable").enable()
+
