@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/plugins/telescope.lua
+-- Streak upkeep
 return {
   {
     "nvim-telescope/telescope.nvim",

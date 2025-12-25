@@ -1,3 +1,4 @@
+-- Streak upkeep
 return {
   "akinsho/bufferline.nvim", -- The plugin that shows buffer tabs at the top
   version = "*", -- Use the latest version

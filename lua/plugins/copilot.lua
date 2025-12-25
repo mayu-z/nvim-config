@@ -1,3 +1,4 @@
+-- Streak upkeep
 return {
      "zbirenbaum/copilot.lua",
      cmd = "Copilot",

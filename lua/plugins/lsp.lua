@@ -1,4 +1,5 @@
 -- File: lua/plugins/lsp.lua
+-- Streak upkeep
 return {
   {
     "neovim/nvim-lspconfig",
