@@ -23,20 +23,7 @@ exe 'hi Visual guibg=' . s:orange . ' guifg=' . s:bg
 exe 'hi VisualNOS guibg=' . s:orange . ' guifg=' . s:bg
 exe 'hi Cursor guibg=' . s:orange . ' guifg=' . s:bg
 
-" ==================== SYNTAX ====================
-exe 'hi Comment guifg=' . s:orange . ' gui=italic'
-exe 'hi String guifg=' . s:orange
-exe 'hi Character guifg=' . s:orange
-exe 'hi Number guifg=' . s:orange
-exe 'hi Boolean guifg=' . s:orange
-exe 'hi Operator guifg=' . s:orange
-exe 'hi Keyword guifg=' . s:orange
-exe 'hi Function guifg=' . s:orange . ' gui=bold'
-exe 'hi Type guifg=' . s:orange
-exe 'hi Identifier guifg=' . s:orange
-exe 'hi Constant guifg=' . s:orange
-exe 'hi Special guifg=' . s:orange
-exe 'hi SpecialChar guifg=' . s:orange
+
 
 " ==================== UI ====================
 exe 'hi StatusLine guibg=' . s:bg . ' guifg=' . s:orange
@@ -53,17 +40,7 @@ exe 'hi WildMenu guibg=' . s:orange . ' guifg=' . s:bg
 exe 'hi FloatBorder guifg=' . s:orange . ' guibg=' . s:bg
 exe 'hi NormalFloat guibg=' . s:bg . ' guifg=' . s:orange
 
-" ==================== TREESITTER ====================
-exe 'hi @keyword guifg=' . s:orange
-exe 'hi @function guifg=' . s:orange . ' gui=bold'
-exe 'hi @type guifg=' . s:orange
-exe 'hi @variable guifg=' . s:orange
-exe 'hi @string guifg=' . s:orange
-exe 'hi @number guifg=' . s:orange
-exe 'hi @boolean guifg=' . s:orange
-exe 'hi @comment guifg=' . s:orange . ' gui=italic'
-exe 'hi @punctuation guifg=' . s:orange
-exe 'hi @operator guifg=' . s:orange
+
 
 " ==================== DIAGNOSTICS ====================
 exe 'hi DiagnosticError guifg=' . s:orange

@@ -16,3 +16,5 @@ require("config.options")
 
 -- plugins
 require("lazy").setup("plugins")
+
+require("config.shortcuts")

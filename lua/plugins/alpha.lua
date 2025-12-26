@@ -1,4 +1,3 @@
-
 return {
   {
     "goolord/alpha-nvim",
@@ -71,6 +70,7 @@ return {
       -- Define the color for the ASCII art - Claude orange theme
       vim.cmd([[
         highlight AlphaHeader guifg=#383636
+        highlight AlphaButtons guifg=#383636
       ]])
 
       alpha.setup(dashboard.config)
