@@ -30,12 +30,23 @@ return {
       -- Set the header color to a lighter shade
       dashboard.section.header.opts.hl = "AlphaHeader"
 
+      -- Custom accent text section
+      local custom_text = {
+        type = "text",
+        val = "   ● Welcome to Mayu's Nvim  ",
+        opts = {
+          position = "center",
+          hl = "AlphaAccent",
+        },
+      }
+
       -- Footer with date and plugin count
       local plugins = require("lazy").stats().count
       dashboard.section.footer.val = {
         "   󰃭  Today is " .. os.date("%a %d %b") .. "  ",
         "   󰏖  " .. plugins .. " plugins in total  ",
       }
+      dashboard.section.footer.opts.hl = "AlphaFooter"
 
       -- Menu buttons with proper alignment
       dashboard.section.buttons.val = {
@@ -59,7 +70,9 @@ return {
       dashboard.config.layout = {
         { type = "padding", val = 3 },
         dashboard.section.header,
-        { type = "padding", val = 4 },
+        { type = "padding", val = 2 },
+        custom_text,
+        { type = "padding", val = 2 },
         dashboard.section.footer,
         { type = "padding", val = 4 },
         dashboard.section.buttons,
@@ -67,10 +80,12 @@ return {
 
 
 
-      -- Define the color for the ASCII art - Claude orange theme
+      -- Unified dashboard palette using the requested accent color
       vim.cmd([[
-        highlight AlphaHeader guifg=#383636
-        highlight AlphaButtons guifg=#383636
+        highlight AlphaHeader guifg=#DE7356 guibg=#333333 gui=bold
+        highlight AlphaButtons guifg=#DE7356 guibg=#333333
+        highlight AlphaAccent guifg=#DE7356 guibg=#333333 gui=bold
+        highlight AlphaFooter guifg=#DE7356 guibg=#333333
       ]])
 
       alpha.setup(dashboard.config)

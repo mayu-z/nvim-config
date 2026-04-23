@@ -10,16 +10,16 @@ return {
     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
   },
-  opts = function()
+opts = function()
     local user = vim.env.USER or "User"
     user = user:sub(1, 1):upper() .. user:sub(2)
     return {
       auto_insert_mode = true,
       show_help = false,
-      question_header = "󰇚 ",
-      answer_header = "󰇚 ",
-      error_header = "󰇚 ",
-      separator = "---",
+      question_header = "  " .. user .. " ",
+      answer_header = "  Copilot ",
+      error_header = "  Error ",
+      separator = "───────────────────────────────────────────────────────────────",
       prompts = {
         Explain = {
           prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.",
@@ -55,11 +55,11 @@ return {
         },
       },
       window = {
-        layout = "float", -- 'vertical', 'horizontal', 'float', 'replace'
-        width = 0.8, -- fractional width of parent, or absolute width in columns when > 1
-        height = 0.9, -- fractional height of parent, or absolute height in rows when > 1
-        border = "rounded", -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
-        zindex = 1, -- determines if window is on top or below other floating windows
+        layout = "vertical", -- vertical split
+        width = 0.4, -- 40% of screen width
+        height = 1.0, -- full height
+        border = "single", -- single border like in your image
+        zindex = 1,
         relative = "editor",
       },
       mappings = {
@@ -105,11 +105,26 @@ return {
     -- AI menu prefix
     { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
     
-    -- Toggle chat
+    -- Toggle chat - MODIFIED to open on right side
     {
       "<leader>aa",
       function()
-        return require("CopilotChat").toggle()
+        local chat = require("CopilotChat")
+        -- Toggle the chat
+        chat.toggle()
+        -- After opening, move the window to the right
+        vim.schedule(function()
+          -- Find the copilot chat window
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local buf_name = vim.api.nvim_buf_get_name(buf)
+            if buf_name:match("copilot%-chat") then
+              -- Move window to the right
+              vim.cmd("wincmd L")
+              break
+            end
+          end
+        end)
       end,
       desc = "Toggle (CopilotChat)",
       mode = { "n", "v" },
@@ -146,6 +161,14 @@ return {
         require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
       end,
       desc = "Prompt Actions (CopilotChat)",
+      mode = { "n", "v" },
+    },
+
+    -- Disable Copilot
+    {
+      "<leader>az",
+      "<cmd>Copilot disable<CR>",
+      desc = "Disable Copilot",
       mode = { "n", "v" },
     },
     
@@ -252,7 +275,7 @@ return {
     -- Setup CopilotChat
     chat.setup(opts)
     
-    -- Remove line numbers in chat buffer
+    -- Remove line numbers in chat buffer and set proper formatting
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = "copilot-*",
       callback = function()
@@ -261,15 +284,16 @@ return {
         vim.opt_local.wrap = true
         vim.opt_local.linebreak = true
         vim.opt_local.foldlevel = 999
+        vim.opt_local.signcolumn = "no"
       end,
     })
     
-    -- Highlight for CopilotChat - User input in orange, AI response in white
-    vim.api.nvim_set_hl(0, "CopilotChatHeader", { fg = "#C15F3C", bold = true })
-    vim.api.nvim_set_hl(0, "CopilotChatQuestion", { fg = "#FF8C42", bold = false }) -- Orange for user input
-    vim.api.nvim_set_hl(0, "CopilotChatAnswer", { fg = "#FFFFFF" }) -- White for AI response
-    vim.api.nvim_set_hl(0, "CopilotChatSelection", { bg = "#2A2A2A" })
-    vim.api.nvim_set_hl(0, "CopilotChatBorder", { fg = "#C15F3C" })
-    vim.api.nvim_set_hl(0, "CopilotChatSeparator", { fg = "#404040" })
+    -- Highlight for CopilotChat matching your orange theme
+    vim.api.nvim_set_hl(0, "CopilotChatHeader", { fg = "#FF8C42", bold = true }) -- Orange for headers
+    vim.api.nvim_set_hl(0, "CopilotChatQuestion", { fg = "#FF8C42" }) -- Orange for user questions
+    vim.api.nvim_set_hl(0, "CopilotChatAnswer", { fg = "#D4D4D4" }) -- Light gray for AI responses
+    vim.api.nvim_set_hl(0, "CopilotChatSelection", { bg = "#2A2A2A" }) -- Dark selection
+    vim.api.nvim_set_hl(0, "CopilotChatBorder", { fg = "#FF8C42" }) -- Orange border
+    vim.api.nvim_set_hl(0, "CopilotChatSeparator", { fg = "#404040" }) -- Dark gray separator
   end,
 }

@@ -3,8 +3,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Load custom Claude colorscheme
-vim.cmd.colorscheme "claude"
-
 vim.opt.number = true
+vim.opt.timeout = true
+vim.opt.ttimeout = true
+vim.opt.timeoutlen = 400
+vim.opt.ttimeoutlen = 10
 

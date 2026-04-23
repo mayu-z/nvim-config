@@ -1,5 +1,7 @@
 # 🎮 Neovim Configuration
 
+![Neovim Dashboard](assets/dashboard.png)
+
 A modern, feature-rich Neovim configuration with AI-powered development tools, beautiful UI, and optimized keybindings for maximum productivity.
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green?style=flat-square&logo=neovim)
@@ -81,10 +83,6 @@ nvim/
 │       ├── telescope.lua   # Fuzzy finder
 │       ├── lualine.lua     # Status bar
 │       └── ...             # Other plugins
-└── colorscheme/
-    └── claude/
-        └── colors/
-            └── claude.vim  # Custom color theme
 ```
 
 ---

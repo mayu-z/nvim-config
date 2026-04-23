@@ -36,8 +36,8 @@ return {
       },
     })
 
-    -- Light red border for floating window
-    vim.cmd([[highlight FloatBorder guifg=#ff6b6b guibg=NONE]])
+    -- Border colors constrained to the global two-color palette
+    vim.cmd([[highlight FloatBorder guifg=#DE7356 guibg=#333333]])
 
     -- Keymap to toggle NvimTree
     vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
